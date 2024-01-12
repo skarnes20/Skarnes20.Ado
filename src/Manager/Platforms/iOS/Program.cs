@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Skarnes20.Ado.Manager;
+namespace Skarnes20.Ado.Manager.Platforms.iOS;
 
 public class Program
 {
