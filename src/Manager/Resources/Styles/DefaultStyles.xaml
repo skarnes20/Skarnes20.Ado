@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style Class="HRule"
+           TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1"/>
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Background_Mid}"/>
+    </Style>
+
+    <Style TargetType="FlyoutItem" x:Key="HomeFlyout">
+        <Style.Triggers>
+            <Trigger TargetType="FlyoutItem"
+                     Property="IsChecked" Value="False">
+                <Setter Property="FlyoutIcon" Value="tab_home.png"/>
+            </Trigger>
+            <Trigger TargetType="FlyoutItem"
+                     Property="IsChecked" Value="True">
+                <Setter Property="FlyoutIcon" Value="tab_home_on.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="FlyoutItem" x:Key="SettingsFlyout">
+        <Style.Triggers>
+            <Trigger TargetType="FlyoutItem"
+                     Property="IsChecked" Value="False">
+                <Setter Property="FlyoutIcon" Value="tab_settings.png"/>
+            </Trigger>
+            <Trigger TargetType="FlyoutItem"
+                     Property="IsChecked" Value="True">
+                <Setter Property="FlyoutIcon" Value="tab_settings_on.png"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

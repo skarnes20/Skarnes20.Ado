@@ -3,13 +3,17 @@
     x:Class="Skarnes20.Ado.Manager.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Skarnes20.Ado.Manager"
-    Shell.FlyoutBehavior="Disabled"
-    Title="ADO Manager">
+    xmlns:pages="clr-namespace:Skarnes20.Ado.Manager.Pages"
+    FlyoutWidth="120" FlyoutBehavior="Locked"
+    Title="">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem Title="Test Plan" Route="testplan" Style="{StaticResource HomeFlyout}">
+        <ShellContent ContentTemplate="{DataTemplate pages:TestPlanPage}"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings" Route="settings" Style="{StaticResource SettingsFlyout}">
+        <ShellContent
+            ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+    </FlyoutItem>
 
 </Shell>

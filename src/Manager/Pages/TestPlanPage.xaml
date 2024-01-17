@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Skarnes20.Ado.Manager.Pages.TestPlanPage"
+             xmlns:vm="clr-namespace:Skarnes20.Ado.Manager.ViewModels"
+             x:DataType="vm:TestPlanViewModel"
+	         Title="Test Plans">
+    <ContentPage.Content>
+        <VerticalStackLayout Margin="20">
+            <Button Text="Get test plans" VerticalOptions="Center" WidthRequest="200" Command="{Binding GetTestPlansCommand}" ></Button>
+            <BoxView class="HRule" Margin="20"/>
+            <CollectionView Margin="20" ItemsSource="{Binding TestPlans}"></CollectionView>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>
