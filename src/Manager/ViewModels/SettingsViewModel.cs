@@ -14,12 +14,14 @@ public partial class SettingsViewModel(IManangerSettings settings) : BaseViewMod
     [RelayCommand]
     public async Task Save()
     {
+        IsBusy = true;
         try
         {
             if (!Organization.StartsWith("https"))
             {
                 Organization = Organization.Insert(0, "https://dev.azure.com/");
             }
+
             settings.Organization = Organization;
             settings.Project = Project;
             await settings.SetToken(Pat ?? string.Empty);
@@ -28,11 +30,16 @@ public partial class SettingsViewModel(IManangerSettings settings) : BaseViewMod
         {
             await App.Current?.MainPage?.DisplayAlert("Ups :-(", exception.Message, "Ok");
         }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 
     [RelayCommand]
     public async Task Appearing()
     {
+        IsBusy = true;
         try
         {
             Organization = settings.Organization;
@@ -43,14 +50,20 @@ public partial class SettingsViewModel(IManangerSettings settings) : BaseViewMod
         {
             await App.Current?.MainPage?.DisplayAlert("Ups :-(", ex.Message, "Ok");
         }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 
     [RelayCommand]
     public void Clear()
     {
+        IsBusy = true;
         settings.Clear();
         Organization = string.Empty;
         Project = string.Empty;
         Pat = string.Empty;
+        IsBusy = false;
     }
 }

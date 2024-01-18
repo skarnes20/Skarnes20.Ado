@@ -11,6 +11,7 @@
         <VerticalStackLayout Margin="20">
             <Button Text="Get test plans" VerticalOptions="Center" WidthRequest="200" Command="{Binding GetTestPlansCommand}" ></Button>
             <BoxView class="HRule" Margin="20"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" />
             <CollectionView Margin="20" 
                             ItemsSource="{Binding TestPlans}" 
                             SelectionMode="Multiple" 

@@ -13,6 +13,7 @@
     </ContentPage.Behaviors>
     <ContentPage.Content>
         <VerticalStackLayout Margin="20">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" />
             <Label Text="Organization" ToolTipProperties.Text="Full path to organization (http://dev.azure.com/myorg)"></Label>
             <Entry Text="{Binding Organization}"></Entry>
 

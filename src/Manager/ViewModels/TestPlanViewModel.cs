@@ -9,6 +9,7 @@ public partial class TestPlanViewModel(IAdoService service) : BaseViewModel
     [RelayCommand]
     async Task GetTestPlans()
     {
+        IsBusy = true;
         try
         {
             var list = await service.GetAllTestPlans();
@@ -27,6 +28,10 @@ public partial class TestPlanViewModel(IAdoService service) : BaseViewModel
         {
             App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
         }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 
     [RelayCommand]
@@ -39,6 +44,7 @@ public partial class TestPlanViewModel(IAdoService service) : BaseViewModel
 
         if (action is "Yes")
         {
+            IsBusy = true;
             try
             {
                 foreach (var testPlan in SelectedTestPlans)
@@ -54,6 +60,10 @@ public partial class TestPlanViewModel(IAdoService service) : BaseViewModel
             catch (Exception exception)
             {
                 App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }
