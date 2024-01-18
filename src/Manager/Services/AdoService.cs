@@ -13,7 +13,8 @@ public class AdoService : IAdoService
 
     public async Task<IEnumerable<TestPlan>> GetAllTestPlans()
     {
-        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",  await _settings.GetToken());
+        _client.DefaultRequestHeaders.Clear();
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",  await _settings.GetBase64Token());
 
         var response = await _client.GetAsync($"{_settings.Organization}/{_settings.Project}/_apis/test/plans?api-version=5.0");
         if (response.IsSuccessStatusCode)

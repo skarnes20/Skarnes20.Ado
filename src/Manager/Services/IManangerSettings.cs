@@ -8,6 +8,8 @@ public interface IManangerSettings
 
     public Task<string> GetToken();
 
+    public Task<string> GetBase64Token();
+
     public Task SetToken(string token);
 
     public void Clear();

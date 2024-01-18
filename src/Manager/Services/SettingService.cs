@@ -1,6 +1,4 @@
-﻿using System.Runtime;
-
-namespace Skarnes20.Ado.Manager.Services;
+﻿namespace Skarnes20.Ado.Manager.Services;
 
 public class SettingService : IManangerSettings
 {
@@ -22,13 +20,15 @@ public class SettingService : IManangerSettings
         return await SecureStorage.Default.GetAsync(nameof(_token)) ?? string.Empty;
     }
 
+    public async Task<string> GetBase64Token()
+    {
+        var token = await SecureStorage.Default.GetAsync(nameof(_token)) ?? string.Empty;
+        return Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(token));
+    }
+
     public async Task SetToken(string token)
     {
-        if (!string.IsNullOrEmpty(token))
-        {
-            var base64 = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(token));
-            await SecureStorage.Default.SetAsync(nameof(_token), base64);
-        } 
+        await SecureStorage.Default.SetAsync(nameof(_token), token);
     }
 
     public void Clear()
