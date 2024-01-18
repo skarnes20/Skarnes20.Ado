@@ -26,7 +26,7 @@ public partial class SettingsViewModel(IManangerSettings settings) : BaseViewMod
         }
         catch (Exception exception)
         {
-            Debug.WriteLine(exception.Message);
+            await App.Current?.MainPage?.DisplayAlert("Ups :-(", exception.Message, "Ok");
         }
     }
 
@@ -41,7 +41,7 @@ public partial class SettingsViewModel(IManangerSettings settings) : BaseViewMod
         }
         catch (Exception ex)
         {
-            Debug.WriteLine(ex);
+            await App.Current?.MainPage?.DisplayAlert("Ups :-(", ex.Message, "Ok");
         }
     }
 

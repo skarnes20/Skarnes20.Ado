@@ -9,25 +9,44 @@ public partial class TestPlanViewModel(IAdoService service) : BaseViewModel
     [RelayCommand]
     async Task GetTestPlans()
     {
-        var list = await service.GetAllTestPlans();
-        TestPlans.Clear();
-        foreach (var plan in list)
+        try
         {
-            TestPlans.Add(plan);
+            var list = await service.GetAllTestPlans();
+            TestPlans.Clear();
+            foreach (var plan in list)
+            {
+                TestPlans.Add(plan);
+            }
+
+            if (TestPlans.Count == 0)
+            {
+                App.Current.MainPage.DisplayAlert("Message", "Returned no test plans.", "Ok");
+            }
+        }
+        catch (Exception exception)
+        {
+            App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
         }
     }
 
     [RelayCommand]
     async Task DeleteTestPlans()
     {
-        foreach (var testPlan in SelectedTestPlans)
+        try
         {
-            if (testPlan is TestPlan plan)
+            foreach (var testPlan in SelectedTestPlans)
             {
-                await service.DeleteTestPlan(plan.Id);
+                if (testPlan is TestPlan plan)
+                {
+                    await service.DeleteTestPlan(plan.Id);
+                }
             }
-        }
 
-        await GetTestPlans();
+            await GetTestPlans();
+        }
+        catch (Exception exception)
+        {
+            App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
+        }
     }
 }
