@@ -2,16 +2,16 @@
 
 public partial class TestPlanViewModel : BaseViewModel
 {
-    private readonly IManangerSettings _settings;
     private readonly IAdoService _service;
 
-    public TestPlanViewModel(IManangerSettings settings, IAdoService service)
+    public TestPlanViewModel(IAdoService service)
     {
-        _settings = settings;
         _service = service;
     }
 
     public ObservableCollection<TestPlan> TestPlans { get; set; } = [];
+
+    public ObservableCollection<object> SelectedTestPlans { get; } = [];
 
     [RelayCommand]
     async Task GetTestPlans()
@@ -22,5 +22,20 @@ public partial class TestPlanViewModel : BaseViewModel
         {
             TestPlans.Add(plan);
         }
+    }
+
+    [RelayCommand]
+    async Task DeleteTestPlans()
+    {
+        foreach (var testPlan in SelectedTestPlans)
+        {
+            var plan = testPlan as TestPlan;
+            if (plan != null)
+            {
+                    await _service.DeleteTestPlan(plan.Id);
+            }
+        }
+
+        await GetTestPlans();
     }
 }

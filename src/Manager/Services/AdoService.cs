@@ -2,21 +2,26 @@
 
 public class AdoService : IAdoService
 {
-    private readonly HttpClient _client;
+    private HttpClient _client;
     private readonly IManangerSettings _settings;
+    private const string ApiVersion = "api-version=5.0";
 
     public AdoService(HttpClient client, IManangerSettings settings)
     {
-        _client = client;
         _settings = settings;
+        Init(client);
+    }
+
+    private async void Init(HttpClient client)
+    {
+        _client = client;
+        _client.DefaultRequestHeaders.Clear();
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", await _settings.GetBase64Token());
     }
 
     public async Task<IEnumerable<TestPlan>> GetAllTestPlans()
     {
-        _client.DefaultRequestHeaders.Clear();
-        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",  await _settings.GetBase64Token());
-
-        var response = await _client.GetAsync($"{_settings.Organization}/{_settings.Project}/_apis/test/plans?api-version=5.0");
+        var response = await _client.GetAsync($"{_settings.Organization}/{_settings.Project}/_apis/test/plans?{ApiVersion}");
         if (response.IsSuccessStatusCode)
         {
             var json = await response.Content.ReadAsStringAsync();
@@ -30,5 +35,10 @@ public class AdoService : IAdoService
         }
 
         return [];
+    }
+
+    public async Task DeleteTestPlan(int id)
+    {
+        _= await _client.DeleteAsync($"{_settings.Organization}/{_settings.Project}/_apis/test/plans/{id}?{ApiVersion}");
     }
 }

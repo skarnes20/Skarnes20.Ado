@@ -4,13 +4,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Skarnes20.Ado.Manager.Pages.TestPlanPage"
              xmlns:vm="clr-namespace:Skarnes20.Ado.Manager.ViewModels"
+             xmlns:models="using:Skarnes20.Ado.Manager.Models"
              x:DataType="vm:TestPlanViewModel"
 	         Title="Test Plans">
     <ContentPage.Content>
         <VerticalStackLayout Margin="20">
             <Button Text="Get test plans" VerticalOptions="Center" WidthRequest="200" Command="{Binding GetTestPlansCommand}" ></Button>
             <BoxView class="HRule" Margin="20"/>
-            <CollectionView Margin="20" ItemsSource="{Binding TestPlans}"></CollectionView>
+            <CollectionView Margin="20" 
+                            ItemsSource="{Binding TestPlans}" 
+                            SelectionMode="Multiple" 
+                            SelectedItems="{Binding SelectedTestPlans}">
+                <CollectionView.Header>
+                    <StackLayout>
+                        <Label Margin="10" Text="Test Plans" FontAttributes="Bold"></Label>
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                    <StackLayout Margin="20">
+                        <Button Text="Delete" WidthRequest="200" HorizontalOptions="Start" Command="{Binding DeleteTestPlansCommand}"></Button>
+                    </StackLayout>
+                </CollectionView.Footer>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:TestPlan">
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding Id }"></Label>
+                            <Label Grid.Column="1" Text="{Binding Name}"></Label>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

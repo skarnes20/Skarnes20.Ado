@@ -3,4 +3,6 @@
 public interface IAdoService
 {
     public Task<IEnumerable<TestPlan>> GetAllTestPlans();
+
+    public Task DeleteTestPlan(int  id);
 }
