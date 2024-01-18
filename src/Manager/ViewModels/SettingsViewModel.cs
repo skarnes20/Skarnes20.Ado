@@ -44,4 +44,13 @@ public partial class SettingsViewModel(IManangerSettings settings) : BaseViewMod
             Debug.WriteLine(ex);
         }
     }
+
+    [RelayCommand]
+    public void Clear()
+    {
+        settings.Clear();
+        Organization = string.Empty;
+        Project = string.Empty;
+        Pat = string.Empty;
+    }
 }

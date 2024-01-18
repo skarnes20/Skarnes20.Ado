@@ -21,6 +21,9 @@
 
             <Label Text="PAT" ToolTipProperties.Text="Personal access token to ado"></Label>
             <Entry IsPassword="True" Text="{Binding Pat}"></Entry>
+
+            <BoxView class="HRule" Margin="20"/>
+            <Button Text="Clear Settings" VerticalOptions="Center" WidthRequest="200" Command="{Binding ClearCommand}" ></Button>
         </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>
