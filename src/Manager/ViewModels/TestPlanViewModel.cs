@@ -1,14 +1,7 @@
 ﻿namespace Skarnes20.Ado.Manager.ViewModels;
 
-public partial class TestPlanViewModel : BaseViewModel
+public partial class TestPlanViewModel(IAdoService service) : BaseViewModel
 {
-    private readonly IAdoService _service;
-
-    public TestPlanViewModel(IAdoService service)
-    {
-        _service = service;
-    }
-
     public ObservableCollection<TestPlan> TestPlans { get; set; } = [];
 
     public ObservableCollection<object> SelectedTestPlans { get; } = [];
@@ -16,7 +9,7 @@ public partial class TestPlanViewModel : BaseViewModel
     [RelayCommand]
     async Task GetTestPlans()
     {
-        var list = await _service.GetAllTestPlans();
+        var list = await service.GetAllTestPlans();
         TestPlans.Clear();
         foreach (var plan in list)
         {
@@ -29,10 +22,9 @@ public partial class TestPlanViewModel : BaseViewModel
     {
         foreach (var testPlan in SelectedTestPlans)
         {
-            var plan = testPlan as TestPlan;
-            if (plan != null)
+            if (testPlan is TestPlan plan)
             {
-                    await _service.DeleteTestPlan(plan.Id);
+                await service.DeleteTestPlan(plan.Id);
             }
         }
 

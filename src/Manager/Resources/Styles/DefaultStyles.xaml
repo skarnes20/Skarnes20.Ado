@@ -8,7 +8,7 @@
            TargetType="BoxView">
         <Setter Property="HeightRequest" Value="1"/>
         <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-        <Setter Property="BackgroundColor" Value="{StaticResource Background_Mid}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundMid}"/>
     </Style>
 
     <Style TargetType="FlyoutItem" x:Key="HomeFlyout">

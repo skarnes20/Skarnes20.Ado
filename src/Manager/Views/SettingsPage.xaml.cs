@@ -1,13 +1,10 @@
-﻿namespace Skarnes20.Ado.Manager.Pages;
+﻿namespace Skarnes20.Ado.Manager.Views;
 
-public partial class SettingsPage : ContentPage
+public partial class SettingsPage
 {
-    private SettingsViewModel _viewModel;
-
     public SettingsPage(SettingsViewModel viewModel)
     {
         InitializeComponent();
-        _viewModel = viewModel;
         BindingContext = viewModel;
     }
 }

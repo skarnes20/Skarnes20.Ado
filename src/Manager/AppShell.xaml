@@ -3,17 +3,17 @@
     x:Class="Skarnes20.Ado.Manager.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:Skarnes20.Ado.Manager.Pages"
+    xmlns:views="clr-namespace:Skarnes20.Ado.Manager.Views"
     FlyoutWidth="120" FlyoutBehavior="Locked"
     Title="">
 
     <FlyoutItem Title="Test Plan" Route="testplan" Style="{StaticResource HomeFlyout}">
-        <ShellContent ContentTemplate="{DataTemplate pages:TestPlanPage}"/>
+        <ShellContent ContentTemplate="{DataTemplate views:TestPlanPage}"/>
     </FlyoutItem>
 
     <FlyoutItem Title="Settings" Route="settings" Style="{StaticResource SettingsFlyout}">
         <ShellContent
-            ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+            ContentTemplate="{DataTemplate views:SettingsPage}"/>
     </FlyoutItem>
 
 </Shell>

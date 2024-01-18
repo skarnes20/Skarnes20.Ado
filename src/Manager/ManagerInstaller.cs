@@ -1,4 +1,6 @@
-﻿namespace Skarnes20.Ado.Manager;
+﻿using Skarnes20.Ado.Manager.Views;
+
+namespace Skarnes20.Ado.Manager;
 
 public static class ManagerInstaller
 {

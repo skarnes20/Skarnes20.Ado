@@ -1,7 +1,4 @@
-﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.Markup;
-
-namespace Skarnes20.Ado.Manager;
+﻿namespace Skarnes20.Ado.Manager;
 
 public static class MauiProgram
 {

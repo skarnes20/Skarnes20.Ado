@@ -2,7 +2,7 @@
 
 public class AdoService : IAdoService
 {
-    private HttpClient _client;
+    private HttpClient _client = new();
     private readonly IManangerSettings _settings;
     private const string ApiVersion = "api-version=5.0";
 

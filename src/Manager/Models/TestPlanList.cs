@@ -3,7 +3,7 @@
 public record TestPlanList(List<TestPlan> Value);
 
 [ObservableObject]
-public partial class TestPlan()
+public partial class TestPlan
 {
     public int Id { get; set; }
 
