@@ -32,21 +32,29 @@ public partial class TestPlanViewModel(IAdoService service) : BaseViewModel
     [RelayCommand]
     async Task DeleteTestPlans()
     {
-        try
-        {
-            foreach (var testPlan in SelectedTestPlans)
-            {
-                if (testPlan is TestPlan plan)
-                {
-                    await service.DeleteTestPlan(plan.Id);
-                }
-            }
+        var action = await App.Current.MainPage.DisplayActionSheet("Confirm delete", 
+            "No", 
+            "Yes", 
+            $"Are you sure you want to delete {SelectedTestPlans.Count} test plans?");
 
-            await GetTestPlans();
-        }
-        catch (Exception exception)
+        if (action is "Yes")
         {
-            App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
+            try
+            {
+                foreach (var testPlan in SelectedTestPlans)
+                {
+                    if (testPlan is TestPlan plan)
+                    {
+                        await service.DeleteTestPlan(plan.Id);
+                    }
+                }
+
+                await GetTestPlans();
+            }
+            catch (Exception exception)
+            {
+                App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
+            }
         }
     }
 }
