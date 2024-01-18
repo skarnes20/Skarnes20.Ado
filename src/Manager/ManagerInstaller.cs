@@ -5,6 +5,9 @@ public static class ManagerInstaller
     public static void AddManagerServices(this IServiceCollection service)
     {
         service.AddSingleton<IManangerSettings, SettingService>();
+        service.AddSingleton<IAdoService, AdoService>();
+
+        service.AddHttpClient();
     }
 
     public static void AddViewModels(this IServiceCollection service)

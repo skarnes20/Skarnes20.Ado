@@ -21,6 +21,10 @@ public partial class SettingsViewModel : BaseViewModel
     [RelayCommand]
     public async Task Save()
     {
+        if (!Organization.StartsWith("https"))
+        {
+            Organization = Organization.Insert(0, "https://dev.azure.com/");
+        }
         _settings.Organization = Organization;
         _settings.Project = Project;
         await _settings.SetToken(Pat??string.Empty);

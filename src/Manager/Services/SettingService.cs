@@ -1,4 +1,6 @@
-﻿namespace Skarnes20.Ado.Manager.Services;
+﻿using System.Runtime;
+
+namespace Skarnes20.Ado.Manager.Services;
 
 public class SettingService : IManangerSettings
 {
@@ -24,7 +26,8 @@ public class SettingService : IManangerSettings
     {
         if (!string.IsNullOrEmpty(token))
         {
-            await SecureStorage.Default.SetAsync(nameof(_token), token);
+            var base64 = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(token));
+            await SecureStorage.Default.SetAsync(nameof(_token), base64);
         } 
     }
 
