@@ -9,5 +9,10 @@ This tool is a support tool for users of Azure DevOps to make everyday life a li
 Made for my personal use, without focus on robustness and quality. Feel free to use, but then at your own risk.
 
 ## Screenshots
+### Phone
+![Settings](images/phone_test.png)
+![TestPlans](images/phone_settings.png)
+
+### Desktop and tablets
 ![Settings](images/test.png)
 ![TestPlans](images/settings.png)
