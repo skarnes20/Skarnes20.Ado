@@ -10,7 +10,7 @@ Made for my personal use, without focus on robustness and quality. Feel free to 
 
 ## Screenshots
 ### Phone
-![Settings](images/phone_test.png)
+![Settings](images/phone_testplans.png)
 ![TestPlans](images/phone_settings.png)
 
 ### Desktop and tablets
