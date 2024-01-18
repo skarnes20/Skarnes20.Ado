@@ -14,7 +14,8 @@
             <CollectionView Margin="20" 
                             ItemsSource="{Binding TestPlans}" 
                             SelectionMode="Multiple" 
-                            SelectedItems="{Binding SelectedTestPlans}">
+                            SelectedItems="{Binding SelectedTestPlans}"
+                            EmptyView="No test plans to show. Try to push 'Get' button">
                 <CollectionView.Header>
                     <StackLayout>
                         <Label Margin="10" Text="Test Plans" FontAttributes="Bold"></Label>

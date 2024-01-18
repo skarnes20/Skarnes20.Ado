@@ -3,7 +3,7 @@
 public class SettingService : IManangerSettings
 {
     public string Project
-    { 
+    {
         get => Preferences.Default.Get(nameof(Project), string.Empty);
         set => Preferences.Default.Set(nameof(Project), value);
     }
@@ -28,7 +28,8 @@ public class SettingService : IManangerSettings
 
     public async Task SetToken(string token)
     {
-        await SecureStorage.Default.SetAsync(nameof(_token), token);
+        if (!string.IsNullOrEmpty(token))
+            await SecureStorage.Default.SetAsync(nameof(_token), token);
     }
 
     public void Clear()

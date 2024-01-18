@@ -14,13 +14,20 @@ public partial class SettingsViewModel(IManangerSettings settings) : BaseViewMod
     [RelayCommand]
     public async Task Save()
     {
-        if (!Organization.StartsWith("https"))
+        try
         {
-            Organization = Organization.Insert(0, "https://dev.azure.com/");
+            if (!Organization.StartsWith("https"))
+            {
+                Organization = Organization.Insert(0, "https://dev.azure.com/");
+            }
+            settings.Organization = Organization;
+            settings.Project = Project;
+            await settings.SetToken(Pat ?? string.Empty);
         }
-        settings.Organization = Organization;
-        settings.Project = Project;
-        await settings.SetToken(Pat??string.Empty);
+        catch (Exception exception)
+        {
+            Debug.WriteLine(exception.Message);
+        }
     }
 
     [RelayCommand]
