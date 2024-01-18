@@ -10,4 +10,4 @@ Made for my personal use, without focus on robustness and quality. Feel free to 
 
 ## Screenshots
 ![Settings](images/test.png)
-![TestPlans](images/testplans.png)
+![TestPlans](images/settings.png)
