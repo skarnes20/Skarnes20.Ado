@@ -37,6 +37,24 @@ public class AdoService : IAdoService
         return [];
     }
 
+    public async Task<IEnumerable<ProjectModel>> GetProjects()
+    {
+        var response = await _client.GetAsync($"{_settings.Organization}/_apis/projects?api-version=7.1-preview.4");
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
+            var list = JsonSerializer.Deserialize<ProjectList>(json, options);
+            return list == null ? [] : list.Value.ToList();
+        }
+
+        return null;
+    }
+
     public async Task DeleteTestPlan(int id)
     {
         _= await _client.DeleteAsync($"{_settings.Organization}/{_settings.Project}/_apis/test/plans/{id}?{ApiVersion}");

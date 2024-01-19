@@ -11,6 +11,10 @@
         <ShellContent ContentTemplate="{DataTemplate views:TestPlanPage}"/>
     </FlyoutItem>
 
+    <FlyoutItem Title="Projects" Route="projects" Style="{StaticResource HomeFlyout}">
+        <ShellContent ContentTemplate="{DataTemplate views:ProjectView}"/>
+    </FlyoutItem>
+
     <FlyoutItem Title="Settings" Route="settings" Style="{StaticResource SettingsFlyout}">
         <ShellContent
             ContentTemplate="{DataTemplate views:SettingsPage}"/>

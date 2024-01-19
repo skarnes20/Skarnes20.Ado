@@ -10,16 +10,19 @@ public partial class TestPlanViewModel(IAdoService service) : BaseViewModel
     async Task GetTestPlans()
     {
         IsBusy = true;
+        TestPlans.Clear();
         try
         {
             var list = await service.GetAllTestPlans();
-            TestPlans.Clear();
-            foreach (var plan in list)
+            App.Current.Dispatcher.Dispatch(() =>
             {
-                TestPlans.Add(plan);
-            }
+                foreach (var plan in list)
+                {
+                    TestPlans.Add(plan);
+                }
+            });
 
-            if (TestPlans.Count == 0)
+            if (!list.Any())
             {
                 App.Current.MainPage.DisplayAlert("Message", "Returned no test plans.", "Ok");
             }

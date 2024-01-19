@@ -1,6 +1,4 @@
-﻿using Skarnes20.Ado.Manager.Views;
-
-namespace Skarnes20.Ado.Manager;
+﻿namespace Skarnes20.Ado.Manager;
 
 public static class ManagerInstaller
 {
@@ -16,11 +14,13 @@ public static class ManagerInstaller
     {
         service.AddSingleton<SettingsViewModel>();
         service.AddTransient<TestPlanViewModel>();
+        service.AddTransient<ProjectViewModel>();
     }
 
     public static void AddViews(this IServiceCollection service)
     {
         service.AddSingleton<SettingsPage>();
         service.AddTransient<TestPlanPage>();
+        service.AddTransient<ProjectView>();
     }
 }
