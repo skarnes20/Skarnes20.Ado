@@ -7,7 +7,7 @@
              xmlns:models="using:Skarnes20.Ado.Manager.Models"
              x:DataType="vm:ProjectViewModel"
              Title="Projects">
-	<ContentPage.Content>
+    <ContentPage.Content>
 		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="70" />
@@ -16,30 +16,33 @@
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+			</Grid.ColumnDefinitions>
 			<Button Grid.Row="0" Text="Get projects" Margin="10" VerticalOptions="Center" WidthRequest="200" Command="{Binding GetProjectsCommand}" ></Button>
 			<BoxView Grid.Row="1" class="HRule" Margin="10"/>
 			<ActivityIndicator Grid.Row="2" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" WidthRequest="40" HeightRequest="40" />
 			<CollectionView Grid.Row="2"
+							SelectionChangedCommand="{Binding  SetProjectCommand}"
+							SelectedItem="{Binding SelectedProject}"
 							ItemsSource="{Binding Projects}"
+							SelectionMode="Single"
 							EmptyView="No projects to show. Try to push 'Get' button">
 				<CollectionView.ItemsLayout>
-					<GridItemsLayout Orientation="Vertical" />
+					<GridItemsLayout Orientation="Vertical" Span="{OnIdiom Phone=1, Default=2}" />
 				</CollectionView.ItemsLayout>
 				<CollectionView.ItemTemplate>
 					<DataTemplate x:DataType="models:ProjectModel">
 						<ContentView>
-							<Frame BackgroundColor="LightSlateGray" CornerRadius="14" Margin="10">
-								<Grid Padding="10" >
+							<Frame CornerRadius="14" Margin="10" BorderColor="DimGrey" >
+								<Grid Padding="10">
 									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto"></RowDefinition>
 										<RowDefinition Height="Auto"></RowDefinition>
 									</Grid.RowDefinitions>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="Auto"></ColumnDefinition>
-										<ColumnDefinition Width="Auto"></ColumnDefinition>
 									</Grid.ColumnDefinitions>
-									<Label Grid.Column="0" Text="{Binding Id }"></Label>
-									<Label Grid.Column="1" Text="{Binding Name}"></Label>
+									<Label Grid.Row="0" Text="{Binding Name }" FontAttributes="Bold"></Label>
+									<Label Grid.Row="1" Text="{Binding Description }"></Label>
 								</Grid>
 							</Frame>
 						</ContentView>

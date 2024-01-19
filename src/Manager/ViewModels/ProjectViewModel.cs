@@ -1,8 +1,10 @@
 ﻿namespace Skarnes20.Ado.Manager.ViewModels;
 
-public partial class ProjectViewModel(IAdoService service) : BaseViewModel
+public partial class ProjectViewModel(IAdoService service, IManangerSettings settings) : BaseViewModel
 {
     public ObservableCollection<object> Projects { get; set; } = [];
+
+    public ProjectModel SelectedProject { get; set; } = new();
 
     [RelayCommand]
     public async Task GetProjects()
@@ -29,6 +31,15 @@ public partial class ProjectViewModel(IAdoService service) : BaseViewModel
         finally
         {
             IsBusy = false;
+        }
+    }
+
+    [RelayCommand]
+    public void SetProject()
+    {
+        if (!string.IsNullOrEmpty(SelectedProject.Name))
+        {
+            settings.Project = SelectedProject.Name;
         }
     }
 }
