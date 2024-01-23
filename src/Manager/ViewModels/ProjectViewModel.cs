@@ -7,6 +7,12 @@ public partial class ProjectViewModel(IAdoService service, IManangerSettings set
     public ProjectModel SelectedProject { get; set; } = new();
 
     [RelayCommand]
+    void Appearing()
+    {
+        Title = $"Projects ({settings.Project})";
+    }
+
+    [RelayCommand]
     public async Task GetProjects()
     {
         IsBusy = true;
@@ -40,6 +46,7 @@ public partial class ProjectViewModel(IAdoService service, IManangerSettings set
         if (!string.IsNullOrEmpty(SelectedProject.Name))
         {
             settings.Project = SelectedProject.Name;
+            Title = $"Projects ({SelectedProject.Name})";
         }
     }
 }
