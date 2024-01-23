@@ -9,7 +9,7 @@ public partial class TestPlanViewModel(IAdoService service, IManangerSettings se
     public ObservableCollection<object> SelectedTestPlans { get; } = [];
 
     [RelayCommand]
-    async Task Appearing()
+    void Appearing()
     {
         Title = $"{settings.Project} Test plans";
     }
@@ -32,12 +32,12 @@ public partial class TestPlanViewModel(IAdoService service, IManangerSettings se
 
             if (!list.Any())
             {
-                App.Current.MainPage.DisplayAlert("Message", "Returned no test plans.", "Ok");
+                await App.Current.MainPage.DisplayAlert("Message", "Returned no test plans.", "Ok");
             }
         }
         catch (Exception exception)
         {
-            App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
+            await App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
         }
         finally
         {
@@ -70,7 +70,7 @@ public partial class TestPlanViewModel(IAdoService service, IManangerSettings se
             }
             catch (Exception exception)
             {
-                App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
+                await App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {exception.Message}", "Ok");
             }
             finally
             {

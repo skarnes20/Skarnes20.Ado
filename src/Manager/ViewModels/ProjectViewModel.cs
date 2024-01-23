@@ -21,12 +21,12 @@ public partial class ProjectViewModel(IAdoService service, IManangerSettings set
 
             if (Projects.Count == 0)
             {
-                App.Current.MainPage.DisplayAlert("Message", "No projects found.", "Ok");
+                await App.Current.MainPage.DisplayAlert("Message", "No projects found.", "Ok");
             }
         }
         catch (Exception ex)
         {
-            App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {ex.Message}", "Ok");
+            await App.Current.MainPage.DisplayAlert("Ups :-(", $"Something went wrong. {ex.Message}", "Ok");
         }
         finally
         {

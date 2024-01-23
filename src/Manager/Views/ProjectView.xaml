@@ -7,7 +7,7 @@
              xmlns:models="using:Skarnes20.Ado.Manager.Models"
              x:DataType="vm:ProjectViewModel"
              Title="Projects">
-    <ContentPage.Content>
+	<ContentPage.Content>
 		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="70" />
@@ -20,7 +20,7 @@
 			<Button Grid.Row="0" Text="Get projects" Margin="10" VerticalOptions="Center" WidthRequest="200" Command="{Binding GetProjectsCommand}" ></Button>
 			<BoxView Grid.Row="1" class="HRule" Margin="10"/>
 			<ActivityIndicator Grid.Row="2" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" WidthRequest="40" HeightRequest="40" />
-			<CollectionView Grid.Row="2"
+			<CollectionView Grid.Row="2" Margin="10"
 							SelectionChangedCommand="{Binding  SetProjectCommand}"
 							SelectedItem="{Binding SelectedProject}"
 							ItemsSource="{Binding Projects}"
@@ -31,8 +31,12 @@
 				</CollectionView.ItemsLayout>
 				<CollectionView.ItemTemplate>
 					<DataTemplate x:DataType="models:ProjectModel">
-						<ContentView>
-							<Frame CornerRadius="14" Margin="10" BorderColor="DimGrey" >
+						<Border BackgroundColor="LightGray"
+                                StrokeThickness="8"
+                                StrokeShape="RoundRectangle 40,0,0,40"
+                                HorizontalOptions="Center"
+                                Padding="16,8" >
+							<ContentView>
 								<Grid Padding="10">
 									<Grid.RowDefinitions>
 										<RowDefinition Height="Auto"></RowDefinition>
@@ -44,8 +48,8 @@
 									<Label Grid.Row="0" Text="{Binding Name }" FontAttributes="Bold"></Label>
 									<Label Grid.Row="1" Text="{Binding Description }"></Label>
 								</Grid>
-							</Frame>
-						</ContentView>
+							</ContentView>
+						</Border>
 					</DataTemplate>
 				</CollectionView.ItemTemplate>
 			</CollectionView>
