@@ -1,4 +1,4 @@
-﻿namespace Skarnes20.Ado.Manager;
+﻿namespace Skarnes20.Ado.Manager.Infrastructure;
 
 public static class ManagerInstaller
 {
@@ -6,6 +6,7 @@ public static class ManagerInstaller
     {
         service.AddSingleton<IManangerSettings, SettingService>();
         service.AddSingleton<IAdoService, AdoService>();
+        service.AddSingleton<ManagerClient>();
 
         service.AddHttpClient();
     }

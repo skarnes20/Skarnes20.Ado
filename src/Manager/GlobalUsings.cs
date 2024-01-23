@@ -2,6 +2,7 @@
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 global using Microsoft.Extensions.Logging;
+global using Skarnes20.Ado.Manager.Infrastructure;
 global using Skarnes20.Ado.Manager.Models;
 global using Skarnes20.Ado.Manager.Services;
 global using Skarnes20.Ado.Manager.ViewModels;
