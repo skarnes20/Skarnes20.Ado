@@ -1,10 +1,18 @@
-﻿namespace Skarnes20.Ado.Manager.ViewModels;
+﻿using System.Collections.Generic;
 
-public partial class TestPlanViewModel(IAdoService service) : BaseViewModel
+namespace Skarnes20.Ado.Manager.ViewModels;
+
+public partial class TestPlanViewModel(IAdoService service, IManangerSettings settings) : BaseViewModel
 {
     public ObservableCollection<TestPlan> TestPlans { get; set; } = [];
 
     public ObservableCollection<object> SelectedTestPlans { get; } = [];
+
+    [RelayCommand]
+    async Task Appearing()
+    {
+        Title = $"{settings.Project} Test plans";
+    }
 
     [RelayCommand]
     async Task GetTestPlans()

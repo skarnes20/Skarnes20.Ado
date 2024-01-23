@@ -5,14 +5,27 @@
              x:Class="Skarnes20.Ado.Manager.Views.TestPlanPage"
              xmlns:vm="clr-namespace:Skarnes20.Ado.Manager.ViewModels"
              xmlns:models="using:Skarnes20.Ado.Manager.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="vm:TestPlanViewModel"
-	         Title="Test Plans">
+	         Title="{Binding Title}">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}"></toolkit:EventToCommandBehavior>
+    </ContentPage.Behaviors>
     <ContentPage.Content>
-        <VerticalStackLayout Margin="20">
-            <Button Text="Get test plans" VerticalOptions="Center" WidthRequest="200" Command="{Binding GetTestPlansCommand}" ></Button>
-            <BoxView class="HRule" Margin="20"/>
-            <ActivityIndicator IsRunning="{Binding IsBusy}" />
-            <CollectionView Margin="20" 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Text="Get test plans" VerticalOptions="Center" WidthRequest="200" Command="{Binding GetTestPlansCommand}" ></Button>
+            <BoxView Grid.Row="1" class="HRule" Margin="10"/>
+            <ActivityIndicator Grid.Row="2" IsRunning="{Binding IsBusy}" />
+            <CollectionView Grid.Row="2" Margin="20" 
                             ItemsSource="{Binding TestPlans}" 
                             SelectionMode="Multiple" 
                             SelectedItems="{Binding SelectedTestPlans}"
@@ -43,6 +56,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </VerticalStackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
