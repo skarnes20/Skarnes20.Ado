@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Skarnes20.Ado.Manager.ViewModels;
+﻿namespace Skarnes20.Ado.Manager.ViewModels;
 
 public partial class TestPlanViewModel(IAdoService service, IManangerSettings settings) : BaseViewModel
 {
